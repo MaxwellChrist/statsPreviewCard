@@ -9,22 +9,23 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 80%;
     height: 100vh;
+    margin: 0 10%;
 }
 
 main{
     background-color: hsl(244, 38%, 16%);
     display: grid;
+    grid-template-columns: 50% 50%;
     grid-template-areas:  
     'textWrapper imageWrapper';
-    
 }
 
 .wrapper{
     background-color: hsl(244, 38%, 16%);
     border-radius: 8px;
-    min-width: 1050px;
+    flex: 1 1 auto;
 }
 
 .textWrapper{
@@ -47,15 +48,19 @@ main{
 .imageWrapper{
    grid-area: imageWrapper;
    background-color: hsl(277, 64%, 61%);
-   border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+   border-radius: 0 8px 8px 0;
 }
 
-img{
+.desktop-image{
+    display: block;
     mix-blend-mode:multiply;
     height: 100%;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    width: 100%;
+    border-radius: 0 8px 8px 0;
+    object-fit: fill;
+}
+.mobile-image{
+    display: none;
 }
 
 h1{
@@ -72,10 +77,76 @@ p{
 }
 
 
-@media (max-width: 500px){
-    main.wrapper{
+@media screen and (max-width: 600px) {
+    body{
+        align-content: center;
+        width: 90%;
+        height: 80vh;
+        margin: 10% 5%;
+    }
+    main{
+        grid-template-rows: 30% 70%;
+        grid-template-columns: 1fr;
         grid-template-areas:  
-        'imageWrappper'
+        'imageWrapper' 
         'textWrapper';
+    }
+    .textWrapper{
+        grid-area: textWrapper;
+        margin: 0 auto;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 20px;
+    }
+    
+    .infoArea{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .infoArea div h1, .infoArea div p{
+        text-align: center;
+    }
+    .infoArea div h1{
+        padding-bottom: 5px;
+    }
+    .infoArea div p{
+        padding-bottom: 20px;
+    }
+
+    .imageWrapper{
+        border-radius: 8px 8px 0 0;
+     }
+    .desktop-image{
+        display: none;
+    }
+    .mobile-image{
+        display: block;
+        mix-blend-mode:multiply;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        object-fit: stretch;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    body{
+        height: 60%;
+        margin: 10px 5% 0;
+    }
+    .textWrapper{
+        padding: 10px;
+    }
+    .infoArea div h1{
+        padding-bottom: 2.5px;
+    }
+    .infoArea div p{
+        padding-bottom: 10px;
     }
 }
